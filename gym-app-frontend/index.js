@@ -19,13 +19,24 @@ function fetchGyms() {
 
   function fetchMenu(){
     fetch('http://localhost:3000/locations')
+    .then(resp => resp.json())
+    .then(json => renderMenu(json));
   }
-
-  function createDropdown(json){
-
+  
+  function renderMenu(json) {
+    let menu = document.createElement('select')
+    let dropdown = document.getElementById('dropdown')
+      json.forEach(location => {
+          let option = document.createElement('option')
+          option.value = location.city
+          option.innerHTML = location.city
+          menu.appendChild(option)
+      });
+      dropdown.appendChild(menu)
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
     fetchGyms();
+    fetchMenu();
   })
   
