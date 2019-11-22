@@ -1,0 +1,7 @@
+body{
+font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+.height{
+    min-height: 100vh;
+}
