@@ -5,3 +5,16 @@ font-family: 'Fira Sans Condensed', sans-serif;
 .height{
     min-height: 100vh;
 }
+
+.height-2{
+    min-height: 60vh;
+}
+
+
+.gym-container{
+background: #EDD4B2;
+}
+
+.top-container{
+background: #581908;
+}
