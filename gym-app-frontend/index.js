@@ -6,28 +6,30 @@ function fetchGyms() {
   }
 
   function renderGyms(json) {
-    let col = document.getElementsByClassName('col-md-4 col-lg-6 my-3')
+    
       json.forEach(gym => {
           let card = document.createElement('div')
           card.className = "card"
           let img = document.createElement('img')
           img.className = "card-img-top"
-          img.src = gym.image
+          img.src = `${gym.image}`
           let cardBody = document.createElement('div')
           cardBody.className = "card-body"
           let cardTitle = document.createElement('h5')
           cardTitle.className = "card-title text-capitalize"
           cardTitle.innerText = gym.name
-          let cardLink = document.createElement('link')
-          cardLink.className = "justify-content-right"
-          cardLink.href = gym.url
+          let cardText = document.createElement('p')
+          cardText.className = "card-text"
+          cardText.innerText = "Lorem20"
+          // cardLink.className = "justify-content-right"
+          // cardLink.href = gym.url
           cardBody.appendChild(cardTitle)
           cardBody.appendChild(cardLink)
           card.appendChild(img)
           card.appendChild(cardBody)
-          col.appendChild(card)
+          let col = document.getElementsByClassName('col-md-4 col-lg-6 my-3')
+          col[0].appendChild(card)
       });
-      document.body.appendChild(mainDiv)
   }
 
   function fetchMenu(){
