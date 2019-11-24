@@ -1,18 +1,31 @@
 
 function fetchGyms() {
-    fetch('https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=AIzaSyDXutd941FQhPL2Nh8upxQZo8rhEAs0Moo')
+    fetch('http://localhost:3000/gyms')
     .then(resp => resp.json())
     .then(json => renderGyms(json));
   }
 
   function renderGyms(json) {
-    let mainDiv = document.createElement('div')
+    let col = document.getElementsByClassName('col-md-4 col-lg-6 my-3')
       json.forEach(gym => {
-          let secondaryDiv = document.createElement('div')
-          let h2 = document.createElement('h2')
-          h2.innerText = `${gym.name}`
-          secondaryDiv.appendChild(h2)
-          mainDiv.appendChild(secondaryDiv)
+          let card = document.createElement('div')
+          card.className = "card"
+          let img = document.createElement('img')
+          img.className = "card-img-top"
+          img.src = gym.image
+          let cardBody = document.createElement('div')
+          cardBody.className = "card-body"
+          let cardTitle = document.createElement('h5')
+          cardTitle.className = "card-title text-capitalize"
+          cardTitle.innerText = gym.name
+          let cardLink = document.createElement('link')
+          cardLink.className = "justify-content-right"
+          cardLink.href = gym.url
+          cardBody.appendChild(cardTitle)
+          cardBody.appendChild(cardLink)
+          card.appendChild(img)
+          card.appendChild(cardBody)
+          col.appendChild(card)
       });
       document.body.appendChild(mainDiv)
   }
