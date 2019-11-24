@@ -1,6 +1,6 @@
 
 function fetchGyms() {
-    fetch('http://localhost:3000/gyms')
+    fetch('https://maps.googleapis.com/maps/api/place/textsearch/xml?query=restaurants+in+Sydney&key=AIzaSyDXutd941FQhPL2Nh8upxQZo8rhEAs0Moo')
     .then(resp => resp.json())
     .then(json => renderGyms(json));
   }
