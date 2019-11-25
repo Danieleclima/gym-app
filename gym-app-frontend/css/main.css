@@ -18,3 +18,8 @@ background: #EDD4B2;
 .top-container{
 background: #581908;
 }
+
+.card-height{
+    height: 400px;
+    width: 350px;
+}
