@@ -56,6 +56,7 @@ function fetchGyms() {
   document.addEventListener('DOMContentLoaded', (event) => {
     fetchGyms();
     fetchMenu();
+    filteredList();
   })
 
   function filterGyms() {
@@ -65,21 +66,23 @@ function fetchGyms() {
   }
   
 function filteredList(json){
+  let select = document.querySelector('select')
   let row = document.getElementsByClassName("row height")[0]
   row.innerHTML = ""
-  select = document.querySelector('select')
-  json.forEach(gym => {
-    if(select.value == gym.city_name){
-      renderGyms(gym)
-    }
+  select.addEventListener('click', (event) =>{
+    json.forEach(gym => {
+      if(select.value == gym.city_name){
+        renderGyms(gym)
+      }
+    })  
   })
 }
 
-function listeners(){
-  let select = document.querySelector('select')
-  for (let item of options) {
-    item.addEventListener('click', (event) =>{
-      filterGyms();
-    })
-}
-}
+// function listeners(){
+//   let select = document.querySelector('select')
+//   for (let item of options) {
+//     item.addEventListener('click', (event) =>{
+//       filterGyms();
+//     })
+// }
+// }
