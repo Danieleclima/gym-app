@@ -6,32 +6,14 @@ function fetchGyms() {
   }
 
   function renderGyms(json) {
-    let row = document.getElementsByClassName("row height")[0]
     document.getElementsByClassName('col-md-4 col-lg-6 my-3 mx-auto')
+    if(json.length){
       json.forEach(gym => {
-        let col = document.createElement('div')
-        col.className = 'col-md-4 col-lg-6 my-3'
-          let card = document.createElement('div')
-          card.className = "card"
-          let img = document.createElement('img')
-          img.className = "card-img-top"
-          img.src = `${gym.image}`
-          let cardBody = document.createElement('div')
-          cardBody.className = "card-body"
-          let cardTitle = document.createElement('h5')
-          cardTitle.className = "card-title text-capitalize"
-          cardTitle.innerText = gym.name
-          let website = document.createElement('a')
-          website.className = "btn btn-outline-dark text-uppercase"
-          website.innerText = "Website"
-          website.href = gym.url
-          cardBody.appendChild(cardTitle)
-          cardBody.appendChild(website)
-          card.appendChild(img)
-          card.appendChild(cardBody)
-          col.appendChild(card)
-          row.appendChild(col)
-      });
+        createGyms(gym)
+      })} else {
+        gym = json
+        createGyms(gym)
+      }
   }
 
   function fetchMenu(){
@@ -51,12 +33,14 @@ function fetchGyms() {
           menu.appendChild(option)
       });
       dropdown.appendChild(menu)
+      menu.addEventListener('click', (event) =>{
+        filterGyms();
+      })
   }
 
   document.addEventListener('DOMContentLoaded', (event) => {
-    fetchGyms();
     fetchMenu();
-    filteredList();
+    fetchGyms();
   })
 
   function filterGyms() {
@@ -66,16 +50,40 @@ function fetchGyms() {
   }
   
 function filteredList(json){
-  let select = document.querySelector('select')
   let row = document.getElementsByClassName("row height")[0]
   row.innerHTML = ""
-  select.addEventListener('click', (event) =>{
+  let select = document.querySelector('select')
     json.forEach(gym => {
       if(select.value == gym.city_name){
         renderGyms(gym)
       }
     })  
-  })
+}
+
+function createGyms(gym){
+  let row = document.getElementsByClassName("row height")[0]
+  let col = document.createElement('div')
+  col.className = 'col-md-4 col-lg-6 my-3'
+    let card = document.createElement('div')
+    card.className = "card"
+    let img = document.createElement('img')
+    img.className = "card-img-top"
+    img.src = `${gym.image}`
+    let cardBody = document.createElement('div')
+    cardBody.className = "card-body"
+    let cardTitle = document.createElement('h5')
+    cardTitle.className = "card-title text-capitalize"
+    cardTitle.innerText = gym.name
+    let website = document.createElement('a')
+    website.className = "btn btn-outline-dark text-uppercase"
+    website.innerText = "Website"
+    website.href = gym.url
+    cardBody.appendChild(cardTitle)
+    cardBody.appendChild(website)
+    card.appendChild(img)
+    card.appendChild(cardBody)
+    col.appendChild(card)
+    row.appendChild(col)
 }
 
 // function listeners(){
