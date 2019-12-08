@@ -55,38 +55,42 @@ function filteredList(json){
     })  
 }
 
+
 function createGyms(json){
   let gym = new Gym(json)
   gym.addGym()
-  // let row = document.getElementsByClassName("row height")[0]
-  // let col = document.createElement('div')
-  // col.className = 'col-md-4 col-lg-6 my-3'
-  //   let card = document.createElement('div')
-  //   card.className = "card"
-  //   let img = document.createElement('img')
-  //   img.className = "card-img-top"
-  //   img.src = `${gym.image}`
-  //   let cardBody = document.createElement('div')
-  //   cardBody.className = "card-body"
-  //   let cardTitle = document.createElement('h5')
-  //   cardTitle.className = "card-title text-capitalize"
-  //   cardTitle.innerText = gym.name
-  //   let website = document.createElement('a')
-  //   website.className = "btn btn-outline-dark text-uppercase"
-  //   website.innerText = "Website"
-  //   website.href = gym.url
-  //   cardBody.appendChild(cardTitle)
-  //   cardBody.appendChild(website)
-  //   card.appendChild(img)
-  //   card.appendChild(cardBody)
-  //   col.appendChild(card)
-  //   row.appendChild(col)
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
   fetchMenu();
   fetchGyms();
-})
+  let submitBtn = document.getElementById('submit')
+  submitBtn.addEventListener('click',function(event){
+    event.preventDefault();
+    let gymName = document.querySelectorAll('input')[0].value
+    let gymCity = document.querySelectorAll('input')[1].value
+
+    let formData = {
+      name: gymName,
+      city_name: gymCity
+    };
+
+    let options = {
+      method: "POST",
+      headers: {
+        'Content-Type': "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(formData)
+    };
+
+    fetch('http://localhost:3000/gyms', options)
+    .then(response => filterGyms())
+
+    
+  })
+}
+)
 
 class Gym {
   constructor({id:id , name: name, rating: rating, openinghours: openinghours, created_at: created_at, image: image, location_id: location_id, updated_at: updated_at, url: url, city_name: city_name}){
