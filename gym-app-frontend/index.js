@@ -69,10 +69,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
     event.preventDefault();
     let gymName = document.querySelectorAll('input')[0].value
     let gymCity = document.querySelectorAll('input')[1].value
+    let url = document.querySelectorAll('input')[3].value
+    let image = document.querySelectorAll('input')[2].value
 
     let formData = {
       name: gymName,
-      city_name: gymCity
+      city_name: gymCity,
+      url: url,
+      image: image
     };
 
     let options = {
